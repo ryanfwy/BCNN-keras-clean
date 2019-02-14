@@ -67,7 +67,7 @@ def buil_bcnn(
     Args:
         all_trainable: fix or unfix VGG16 layers.
         size_height: default 448.
-        size_width: defalult 448.
+        size_width: default 448.
         no_class: number of prediction classes.
         no_last_layer_backbone: number of VGG16 backbone layer.
         name_optimizer: optimizer method.
@@ -168,58 +168,33 @@ def buil_bcnn(
     return model_bcnn
 
 def save_model(
-        all_trainable=False,
         size_height=448,
         size_width=448,
-        no_class=200,
-        no_last_layer_backbone=17,
-        name_optimizer='sgd',
-        learning_rate=1.0,
-        decay_learning_rate=0.0,
-        decay_weight_rate=0.0,
-        name_initializer='glorot_normal',
-        name_activation='softmax',
-        name_loss='categorical_crossentropy'
+        no_class=200
     ):
     '''Save Bilinear CNN to current directory.
 
     The model will be saved as `model.json`.
 
     Args:
-        all_trainable: fix or unfix VGG16 layers.
         size_height: default 448.
-        size_width: defalult 448.
+        size_width: default 448.
         no_class: number of prediction classes.
-        no_last_layer_backbone: number of VGG16 backbone layer.
-        name_optimizer: optimizer method.
-        learning_rate: learning rate.
-        decay_learning_rate: learning rate decay.
-        decay_weight_rate: l2 normalization decay rate.
-        name_initializer: initializer method.
-        name_activation: activation method.
-        name_loss: loss function.
 
     Returns:
         Bilinear CNN model.
     '''
     model = buil_bcnn(
-        all_trainable=all_trainable,
         size_height=size_height,
         size_width=size_width,
-        no_class=no_class,
-        no_last_layer_backbone=no_last_layer_backbone,
-        name_optimizer=name_optimizer,
-        learning_rate=learning_rate,
-        decay_learning_rate=decay_learning_rate,
-        decay_weight_rate=decay_weight_rate,
-        name_initializer=name_initializer,
-        name_activation=name_activation,
-        name_loss=name_loss)
+        no_class=no_class)
 
     # Save model json
     model_json = model.to_json()
     with open('./model.json', 'w') as f:
         f.write(model_json)
+
+    print('Model is saved to ./model.json')
 
     return True
 

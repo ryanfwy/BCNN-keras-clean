@@ -159,7 +159,7 @@ def random_crop_image(x, size_target=(448, 448)):
     # Crop image
     margin_h = (size_height_img - size_heigth_target)
     margin_w = (size_width_img - size_width_target)
-    h_start = 0 
+    h_start = 0
     w_start = 0
     if margin_h != 0:
         h_start = np.random.randint(low=0, high=margin_h)
@@ -213,7 +213,7 @@ def preprocess_input(x):
 
 
 class DirectoryIterator(Keras_DirectoryIterator):
-    '''Inherit from keras' DirectoryIterator'''
+    '''Inherit from keras' DirectoryIterator.'''
     def _get_batches_of_transformed_samples(self, index_array):
         batch_x = np.zeros(
             (len(index_array),) + self.image_shape,
@@ -268,7 +268,7 @@ class DirectoryIterator(Keras_DirectoryIterator):
 
 
 class ImageDataGenerator(Keras_ImageDataGenerator):
-    '''Inherit from keras' ImageDataGenerator'''
+    '''Inherit from keras' ImageDataGenerator.'''
     def flow_from_directory(
             self, directory,
             target_size=(256, 256), color_mode='rgb',
